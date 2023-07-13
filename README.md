@@ -1,38 +1,122 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+次项目是优思面试使用的模拟项目
 
-## Getting Started
+# 开始
 
-First, run the development server:
+首先克隆此项目
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+git clone https://github.com/<您的github用户名>/beebooks.git
+
+cd beebooks
+
+git remote set-url origin <你的remote repo url>
+
+# 项目完成后告诉我您的remote repo 的url即可
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+此项目是一个 nextjs 请参考 [NEXT 文档](https://www.nextjs.cn/docs/getting-started)
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+网站前端流程请阅览 [UI 线框图](https://www.figma.com/proto/AVd2eMcr1BtCr3UaQpNsFb/%E7%BD%91%E9%A1%B5%E9%A1%B5%E9%9D%A2?page-id=0%3A1&type=design&node-id=11-327&viewport=342%2C367%2C0.53&t=HaFn47fZtPJo65wq-1&scaling=scale-down&starting-point-node-id=1%3A2&mode=design)。
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+流程请按照线框图制作，但是 UI 可以自己设计。请尽量不要使用任何 UI 库。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+# 后端
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+## 基础 URL
 
-## Learn More
+我会私底下告诉你基础 URL。
 
-To learn more about Next.js, take a look at the following resources:
+## 端点
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### /graphql
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+graphql 的节点，关于 graphql 的使用请参考一下信息。 所有的返回数据必须在前端 typesafe，graphql 可以使用 codegen 自动生成 type。Restful 可以写 generics。
 
-## Deploy on Vercel
+- [Apollo Graphql](https://www.apollographql.com/docs/react)
+- [Codegen](https://the-guild.dev/graphql/codegen)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### /register
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+新用户注册
+
+- 方法：POST
+- 请求格式：
+  - 请求体（如果适用）：
+    ```json
+    {
+      "name": "value",
+      "email": "value",
+      "password": "value"
+    }
+    ```
+- 响应格式：
+  - 成功响应：
+    - 状态码：200
+    - 响应体：
+    ```json
+    {
+      "token": "value"
+    }
+    ```
+  - 错误响应：
+    - 状态码：400=你的错误，500 请联系我
+    - 响应体：
+    ```json
+    {
+      "error": "错误信息"
+    }
+    ```
+
+### /login
+
+用户登录
+
+- 方法：POST
+- 请求格式：
+  - 请求体（如果适用）：
+    ```json
+    {
+      "email": "value",
+      "password": "value"
+    }
+    ```
+- 响应格式：
+  - 成功响应：
+    - 状态码：200
+    - 响应体：
+    ```json
+    {
+      "token": "value"
+    }
+    ```
+  - 错误响应：
+    - 状态码：400=你的错误，500 请联系我
+    - 响应体：
+    ```json
+    {
+      "error": "错误信息"
+    }
+    ```
+
+### /reset
+
+清除数据库所有信息
+
+- 方法：GET
+- 响应格式：
+  - 成功响应：
+    - 状态码：200
+    - 响应体：
+    ```json
+    {
+      "message": "success"
+    }
+    ```
+  - 错误响应：
+    - 状态码：400=你的错误，500 请联系我
+    - 响应体：
+    ```json
+    {
+      "error": "错误信息"
+    }
+    ```
