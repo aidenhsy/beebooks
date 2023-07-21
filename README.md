@@ -1,5 +1,13 @@
 次项目是优思面试使用的模拟项目
 
+# 概括
+
+此项目是一个书籍分享平台，用户登录后可以添加自己喜欢的书，也可以看到其他用户喜欢的书，也可以看到所有喜欢一本书的用户。未登录的用户可以看到所有用户喜欢的书籍但是不能添加书籍。
+
+添加书籍的时候需要先搜索此书是否已被添加过，如果以被添加过则可以选择该书，如果没有被添加过则添加新书。
+
+登录后，后端返回的 jwt 请使用 http only header 存储令牌。
+
 # 开始
 
 首先克隆此项目
@@ -29,6 +37,8 @@ git remote set-url origin <你的remote repo url>
 ## 端点
 
 ### /graphql
+
+API 说明请查看[UI 网页](https://i1beebooks.yousico.com/graphql)
 
 graphql 的节点，关于 graphql 的使用请参考一下信息。 所有的返回数据必须在前端 typesafe，graphql 可以使用 codegen 自动生成 type。Restful 可以写 generics。
 
